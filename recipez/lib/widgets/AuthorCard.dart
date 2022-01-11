@@ -14,28 +14,36 @@ class AuthorCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const AuthorImage(
-            image: AssetImage('assets/antonio.jpg'),
+          Row(
+            children: [
+              const AuthorImage(
+                image: AssetImage('assets/antonio.jpg'),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(name, style: RecipezTheme.lightTextTheme.bodyText1),
+                  Text(title, style: RecipezTheme.lightTextTheme.bodyText1),
+                ],
+              ),
+            ],
           ),
-          Column(),
-
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     Text(name, style: RecipezTheme.lightTextTheme.bodyText1),
-          //     Text(title, style: RecipezTheme.lightTextTheme.bodyText1),
-          //   ],
-          // ),
-
-          // const SizedBox(
-          //   width: 10,
-          // ),
-          //
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              const snackbar = SnackBar(
+                content: Text('You like smoothies?'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            },
             icon: const Icon(
               Icons.favorite_border,
+              size: 30,
+              color: Colors.grey,
             ),
           ),
         ],

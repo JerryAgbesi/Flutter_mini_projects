@@ -15,14 +15,28 @@ class Card2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Stack(
+        child: Column(
           children: [
-           AuthorCard(name: 'Antonio', title: 'Smoothie Connoissieur'),
-            Positioned(
-                bottom: 30,
-                right: 20,
-                child:
-                    Text(recipe, style: RecipezTheme.lightTextTheme.headline1)),
+            AuthorCard(name: chefName, title: title),
+            Expanded(
+              child: Stack(
+                children: [
+                  Positioned(
+                      bottom: 16,
+                      right: 16,
+                      child: Text(recipe,
+                          style: RecipezTheme.lightTextTheme.headline1)),
+                  Positioned(
+                      bottom: 40,
+                      left: 16,
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: Text(name,
+                            style: RecipezTheme.lightTextTheme.headline1),
+                      )),
+                ],
+              ),
+            )
           ],
         ),
         constraints: const BoxConstraints.expand(width: 400, height: 500),
