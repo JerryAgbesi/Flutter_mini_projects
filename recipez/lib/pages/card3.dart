@@ -54,10 +54,11 @@ class Card3 extends StatelessWidget {
                             style: RecipezTheme.darkTextTheme.bodyText1,
                           ),
                           backgroundColor: Colors.black.withOpacity(0.7),
+                          onDeleted:() => print('delete'),
                         ),
                         Chip(
                           label: Text(
-                            'healthy',
+                            'Healthy',
                             style: RecipezTheme.darkTextTheme.bodyText1,
                           ),
                           backgroundColor: Colors.black.withOpacity(0.7),
