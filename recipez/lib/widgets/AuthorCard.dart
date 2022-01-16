@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'author_image.dart';
 import 'package:recipez/recipez_theme.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   const AuthorCard({Key? key, required this.name, required this.title})
       : super(key: key);
 
   final String name;
   final String title;
+
+  @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isfavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,23 +34,28 @@ class AuthorCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: RecipezTheme.lightTextTheme.bodyText1),
-                  Text(title, style: RecipezTheme.lightTextTheme.bodyText1),
+                  Text(widget.name,
+                      style: RecipezTheme.lightTextTheme.bodyText1),
+                  Text(widget.title,
+                      style: RecipezTheme.lightTextTheme.bodyText1),
                 ],
               ),
             ],
           ),
           IconButton(
             onPressed: () {
+              setState(() {
+                _isfavorite = !_isfavorite;
+              });
               const snackbar = SnackBar(
                 content: Text('You like smoothies?'),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
             },
-            icon: const Icon(
-              Icons.favorite_border,
+            icon: Icon(
+              _isfavorite ? Icons.favorite : Icons.favorite_border,
               size: 30,
-              color: Colors.grey,
+              color: Colors.red[400],
             ),
           ),
         ],
