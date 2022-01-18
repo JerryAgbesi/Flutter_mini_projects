@@ -14,6 +14,7 @@ class Foodiez extends StatelessWidget {
     final theme = FoodiezTheme.light();
     return MaterialApp(
       theme: theme,
+      debugShowCheckedModeBanner: false,
       title: 'Foodiez',
       home: const Home(),
     );
