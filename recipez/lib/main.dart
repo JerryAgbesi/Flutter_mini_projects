@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'recipez_theme.dart';
+
+import 'fooderlich_theme.dart';
 import 'home.dart';
+
 void main() {
   runApp(const Foodiez());
 }
@@ -9,13 +11,11 @@ class Foodiez extends StatelessWidget {
   const Foodiez({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final appTheme = RecipezTheme.dark();
-
+    final theme = FoodiezTheme.light();
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: appTheme,
+      theme: theme,
       title: 'Foodiez',
-      home: Home()
+      home: const Home(),
     );
   }
 }

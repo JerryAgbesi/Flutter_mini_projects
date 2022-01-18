@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RecipezTheme {
+class FoodiezTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
@@ -62,11 +62,9 @@ class RecipezTheme {
     return ThemeData(
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith(
-          (states) {
-            return Colors.black;
-          },
-        ),
+        fillColor: MaterialStateColor.resolveWith((states) {
+          return Colors.black;
+        }),
       ),
       appBarTheme: const AppBarTheme(
         foregroundColor: Colors.black,
