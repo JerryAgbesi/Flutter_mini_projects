@@ -66,6 +66,7 @@ flutter:
     - assets/magazine_pics/
     - assets/sample_data/
     - assets/profile_pics/
+    - assets/foodiez_assets/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
