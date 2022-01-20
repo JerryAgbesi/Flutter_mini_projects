@@ -19,7 +19,7 @@ class FriendPostListView extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Social chefs ',
+            'Social chefs 👩‍🍳 ',
             style: Theme.of(context).textTheme.headline1,
           ),
           const SizedBox(height: 16),
