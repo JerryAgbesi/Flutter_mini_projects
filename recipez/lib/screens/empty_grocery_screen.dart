@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipez/screens/recipe_screen.dart';
+import 'package:recipez/models/models.dart';
+import 'package:provider/provider.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
   const EmptyGroceryScreen({Key? key}) : super(key: key);
@@ -31,9 +33,7 @@ class EmptyGroceryScreen extends StatelessWidget {
             ),
             MaterialButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return RecipeScreen();
-                }));
+                 Provider.of<TabManager>(context,listen: false).goToRecipe();
               },
               color: Colors.green,
               shape: RoundedRectangleBorder(

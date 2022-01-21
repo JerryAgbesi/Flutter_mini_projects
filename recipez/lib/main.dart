@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipez/models/models.dart';
 
 import 'fooderlich_theme.dart';
 import 'home.dart';
@@ -16,7 +18,11 @@ class Foodiez extends StatelessWidget {
       theme: theme,
       debugShowCheckedModeBanner: false,
       title: 'Foodiez',
-      home: const Home(),
+      home: MultiProvider(
+        providers: [
+               ChangeNotifierProvider(create: (context) => TabManager())
+        ],
+        child: const Home()),
     );
   }
 }
