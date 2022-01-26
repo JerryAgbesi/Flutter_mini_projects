@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/number_symbols_data.dart';
+import 'package:recipez/components/components.dart';
 import 'package:uuid/uuid.dart';
 import 'package:recipez/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,7 +71,30 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.check)),
+          IconButton(
+              onPressed: () {
+                final groceryItem = GroceryItem(
+                  name: _name,
+                  id: widget.originalItem?.id ?? const Uuid().v1(),
+                  importance: _importance,
+                  color: _currentColor,
+                  quantity: _currentSlidervalue,
+                  date: DateTime(
+                    _dueDate.year,
+                    _dueDate.month,
+                    _dueDate.day,
+                    _dueDate.hour,
+                    _dueDate.minute,
+                  ),
+                );
+
+                if (widget.isUpdating) {
+                  widget.onUpdate(groceryItem);
+                } else {
+                  widget.onCreate(groceryItem);
+                }
+              },
+              icon: const Icon(Icons.check)),
         ],
         elevation: 0.0,
         title: Text(
@@ -94,6 +118,19 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               height: 10,
             ),
             buildQuantityField(),
+            GroceryTile(
+              item: GroceryItem(
+                name: _name,
+                id: 'preview mode',
+                importance: _importance,
+                color: _currentColor,
+                quantity: _currentSlidervalue,
+                date: DateTime(
+                  _dueDate.year,
+                  _dueDate.month,
+                ),
+              ),
+            ),
           ],
         ),
       ),
