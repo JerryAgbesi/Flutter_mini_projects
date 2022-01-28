@@ -13,19 +13,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
- 
-
   static List<Widget> pages = <Widget>[
     ExploreScreen(),
     RecipeScreen(),
     GroceryScreen(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<TabManager>(builder:(context,tabmanager,child){
-    return Scaffold(
+    return Consumer<TabManager>(builder: (context, tabmanager, child) {
+      return Scaffold(
         appBar: AppBar(
           title: Center(
             child: Text(
@@ -34,11 +31,12 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        body: pages[tabmanager.selected_tab],
+        body: IndexedStack(index: tabmanager.selected_tab, children: pages),
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
+          selectedItemColor:
+              Theme.of(context).textSelectionTheme.selectionColor,
           currentIndex: tabmanager.selected_tab,
-          onTap: (index){
+          onTap: (index) {
             tabmanager.goToTab(index);
           },
           items: const <BottomNavigationBarItem>[
@@ -57,7 +55,6 @@ class _HomeState extends State<Home> {
           ],
         ),
       );
-    }
-    );
+    });
   }
 }
