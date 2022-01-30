@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:recipez/models/grocery_item.dart';
-import 'package:recipez/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class GroceryTile extends StatelessWidget {
-  GroceryTile({Key? key, required this.item, this.onComplete})
-      : textDecoration =
-            item.isComplete ? TextDecoration.lineThrough : TextDecoration.none,
-        super(key: key);
+import '../models/grocery_item.dart';
 
+class GroceryTile extends StatelessWidget {
   final GroceryItem item;
   final Function(bool?)? onComplete;
   final TextDecoration textDecoration;
 
+  GroceryTile({
+    Key? key,
+    required this.item,
+    this.onComplete,
+  })  : textDecoration =
+            item.isComplete ? TextDecoration.lineThrough : TextDecoration.none,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,34 +27,26 @@ class GroceryTile extends StatelessWidget {
           Row(
             children: [
               Container(
-                color: item.color,
                 width: 5.0,
+                color: item.color,
               ),
-              const SizedBox(
-                width: 16,
-              ),
+              const SizedBox(width: 16.0),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     item.name,
                     style: GoogleFonts.lato(
-                        fontSize: 21,
-                        decoration: textDecoration,
-                        fontWeight: FontWeight.bold),
+                      decoration: textDecoration,
+                      fontSize: 21.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  const SizedBox(
-                    width: 4,
-                  ),
+                  const SizedBox(height: 4.0),
                   buildDate(),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  buidImportance(),
-                  const SizedBox(
-                    width: 4,
-                  ),
+                  const SizedBox(height: 4.0),
+                  buildImportance(),
                 ],
               ),
             ],
@@ -59,13 +54,13 @@ class GroceryTile extends StatelessWidget {
           Row(
             children: [
               Text(
-                '${item.quantity}',
+                item.quantity.toString(),
                 style: GoogleFonts.lato(
-                  fontSize: 21.0,
                   decoration: textDecoration,
+                  fontSize: 21,
                 ),
               ),
-              buildCheckBox(),
+              buildCheckbox()
             ],
           ),
         ],
@@ -73,26 +68,23 @@ class GroceryTile extends StatelessWidget {
     );
   }
 
-  Widget buidImportance() {
+  Widget buildImportance() {
     if (item.importance == Importance.low) {
       return Text(
         'Low',
-        style: GoogleFonts.lato(
-          decoration: textDecoration,
-        ),
+        style: GoogleFonts.lato(decoration: textDecoration),
       );
     } else if (item.importance == Importance.medium) {
       return Text(
-        'Meduim',
+        'Medium',
         style: GoogleFonts.lato(
-          fontWeight: FontWeight.w800,
-          decoration: textDecoration,
-        ),
+            fontWeight: FontWeight.w800, decoration: textDecoration),
       );
     } else if (item.importance == Importance.high) {
       return Text(
         'High',
         style: GoogleFonts.lato(
+          color: Colors.red,
           fontWeight: FontWeight.w900,
           decoration: textDecoration,
         ),
@@ -111,10 +103,10 @@ class GroceryTile extends StatelessWidget {
     );
   }
 
-  Widget buildCheckBox() {
+  Widget buildCheckbox() {
     return Checkbox(
-      onChanged: onComplete,
       value: item.isComplete,
+      onChanged: onComplete,
     );
   }
 }

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recipez/screens/recipe_screen.dart';
-import 'package:recipez/models/models.dart';
-import 'package:provider/provider.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
   const EmptyGroceryScreen({Key? key}) : super(key: key);
@@ -15,32 +12,32 @@ class EmptyGroceryScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
-                child: AspectRatio(
-                    aspectRatio: 1 / 1,
-                    child:
-                        Image.asset('assets/foodiez_assets/empty_list.png'))),
-            const Text(
+              child: AspectRatio(
+                aspectRatio: 1 / 1,
+                child: Image.asset('assets/fooderlich_assets/empty_list.png'),
+              ),
+            ),
+            Text(
               'No Groceries',
-              style: TextStyle(fontSize: 21.0),
+              style: Theme.of(context).textTheme.headline6,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16.0),
             const Text(
-              'Shopping for ingredients ?\n'
-              'tap the + button to add some',
+              'Shopping for ingredients?\n'
+              'Tap the + button to write them down!',
               textAlign: TextAlign.center,
             ),
             MaterialButton(
-              onPressed: () {
-                 Provider.of<TabManager>(context,listen: false).goToRecipe();
-              },
-              color: Colors.green,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
               textColor: Colors.white,
               child: const Text('Browse Recipes'),
-            )
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              color: Colors.green,
+              onPressed: () {
+                // TODO: Update user's selected tab
+              },
+            ),
           ],
         ),
       ),

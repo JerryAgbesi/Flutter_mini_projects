@@ -1,35 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:recipez/models/models.dart';
-import 'package:recipez/components/components.dart';
+
+import '../components/components.dart';
+import '../models/models.dart';
 
 class FriendPostTile extends StatelessWidget {
-  const FriendPostTile({Key? key, required this.post}) : super(key: key);
-
   final Post post;
+
+  const FriendPostTile({
+    Key? key,
+    required this.post,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         CircleImage(
-          imageProvider: AssetImage(post.profileImageUrl),
+          imageProvider: AssetImage('${post.profileImageUrl}'),
+          imageRadius: 20,
         ),
-        const SizedBox(
-          width: 16,
-        ),
+        const SizedBox(width: 16),
         Expanded(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(post.comment),
-            Text(
-              "${post.timestamp} minutes ago",
-              style: const TextStyle(fontWeight: FontWeight.w700),
-            )
-          ],
-        ))
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(post.comment),
+              Text(
+                '${post.timestamp} mins ago',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
