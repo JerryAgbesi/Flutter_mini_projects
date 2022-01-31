@@ -1,4 +1,4 @@
-class FooderlichPages {
+class FoodiezPages {
   static String splashPath = '/splash';
   static String loginPath = '/login';
   static String onboardingPath = '/onboarding';

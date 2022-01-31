@@ -7,9 +7,7 @@ import 'screens/splash_screen.dart';
 // TODO: Import app_router
 
 void main() {
-  runApp(
-    const Foodiez(),
-  );
+  runApp(const Foodiez());
 }
 
 class Foodiez extends StatefulWidget {
@@ -49,6 +47,7 @@ class _FoodiezState extends State<Foodiez> {
           }
 
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: theme,
             title: 'Foodiez',
             // TODO: Replace with Router widget
