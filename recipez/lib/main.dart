@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:recipez/navigation/app_router.dart';
 import 'fooderlich_theme.dart';
 import 'models/models.dart';
-import 'screens/splash_screen.dart';
-// TODO: Import app_router
+
+import 'package:recipez/models/app_state_manager.dart';
 
 void main() {
   runApp(const Foodiez());
@@ -20,10 +20,17 @@ class Foodiez extends StatefulWidget {
 class _FoodiezState extends State<Foodiez> {
   final _groceryManager = GroceryManager();
   final _profileManager = ProfileManager();
-  // TODO: Create AppStateManager
-  // TODO: Define AppRouter
+  final _appStateManager = AppStateManager();
+  late AppRouter _appRouter;
 
-  // TODO: Initialize app router
+  @override
+  void initState() {
+    _appRouter = AppRouter(
+        appStateManager: _appStateManager,
+        groceryManager: _groceryManager,
+        profileManager: _profileManager);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +42,9 @@ class _FoodiezState extends State<Foodiez> {
         ChangeNotifierProvider(
           create: (context) => _profileManager,
         ),
-        // TODO: Add AppStateManager ChangeNotifierProvider
+        ChangeNotifierProvider(
+          create: (context) => _appStateManager,
+        ),
       ],
       child: Consumer<ProfileManager>(
         builder: (context, profileManager, child) {
@@ -50,8 +59,8 @@ class _FoodiezState extends State<Foodiez> {
             debugShowCheckedModeBanner: false,
             theme: theme,
             title: 'Foodiez',
-            // TODO: Replace with Router widget
-            home: const SplashScreen(),
+            
+            home:Router(routerDelegate: _appRouter,),
           );
         },
       ),
