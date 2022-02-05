@@ -49,8 +49,8 @@ class AppRouter extends RouterDelegate
       onPopPage: _handlePop,
       //stack of pages to define the navigation task
       pages: [
-        SplashScreen.page(),
-        // if (!appStateManager.isInitialized) SplashScreen.page(),
+        // SplashScreen.page(),
+        if (!appStateManager.isInitialized) SplashScreen.page(),
         if (appStateManager.isInitialized && !appStateManager.isloggedIn)
           LoginScreen.page(),
       ],
