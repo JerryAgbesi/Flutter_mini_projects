@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:recipez/models/models.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  // TODO: Add OnboardingScreen MaterialPage Helper
+  static MaterialPage page() {
+    return MaterialPage(
+      name: FoodiezPages.onboardingPath,
+      key: ValueKey(FoodiezPages.onboardingPath),
+      child: const OnboardingScreen(),
+    );
+  }
 
   const OnboardingScreen({Key? key}) : super(key: key);
 
@@ -50,7 +58,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         MaterialButton(
           child: const Text('Skip'),
           onPressed: () {
-            // TODO: Onboarding -> Navigate to home
+            Provider.of<AppStateManager>(context, listen: false)
+                .completeOnBoarding();
           },
         ),
       ],
@@ -62,15 +71,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       controller: controller,
       children: [
         onboardPageView(
-          const AssetImage('assets/fooderlich_assets/recommend.png'),
+          const AssetImage('assets/foodiez_assets/recommend.png'),
           '''Check out weekly recommended recipes and what your friends are cooking!''',
         ),
         onboardPageView(
-          const AssetImage('assets/fooderlich_assets/sheet.png'),
+          const AssetImage('assets/foodiez_assets/sheet.png'),
           'Cook with step by step instructions!',
         ),
         onboardPageView(
-          const AssetImage('assets/fooderlich_assets/list.png'),
+          const AssetImage('assets/foodiez_assets/list.png'),
           'Keep track of what you need to buy',
         ),
       ],

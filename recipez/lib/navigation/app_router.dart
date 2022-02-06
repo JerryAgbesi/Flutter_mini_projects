@@ -53,6 +53,10 @@ class AppRouter extends RouterDelegate
         if (!appStateManager.isInitialized) SplashScreen.page(),
         if (appStateManager.isInitialized && !appStateManager.isloggedIn)
           LoginScreen.page(),
+        if (appStateManager.isloggedIn && !appStateManager.isonBoardingComplete)
+          OnboardingScreen.page(),
+          if(appStateManager.isonBoardingComplete)
+          Home.page(appStateManager.getSelectedTab)
       ],
     );
   }
@@ -60,6 +64,9 @@ class AppRouter extends RouterDelegate
   bool _handlePop(Route<dynamic> route, result) {
     if (!route.didPop(result)) {
       return false;
+    }
+    if (route.settings.name == FoodiezPages.onboardingPath) {
+      appStateManager.logout();
     }
 
     return true;

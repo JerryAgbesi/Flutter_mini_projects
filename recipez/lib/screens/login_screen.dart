@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipez/models/models.dart';
+
 class LoginScreen extends StatelessWidget {
- static MaterialPage page() {
+  static MaterialPage page() {
     return MaterialPage(
       name: FoodiezPages.loginPath,
       key: ValueKey(FoodiezPages.loginPath),
@@ -65,7 +66,8 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () async {
-          // TODO: Login -> Navigate to home
+          Provider.of<AppStateManager>(context, listen: false)
+              .login('mockUsername', 'mockPassword');
         },
       ),
     );

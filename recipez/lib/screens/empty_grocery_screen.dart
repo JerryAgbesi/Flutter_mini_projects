@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipez/models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
   const EmptyGroceryScreen({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class EmptyGroceryScreen extends StatelessWidget {
             Flexible(
               child: AspectRatio(
                 aspectRatio: 1 / 1,
-                child: Image.asset('assets/fooderlich_assets/empty_list.png'),
+                child: Image.asset('assets/foodiez_assets/empty_list.png'),
               ),
             ),
             Text(
@@ -35,7 +37,8 @@ class EmptyGroceryScreen extends StatelessWidget {
               ),
               color: Colors.green,
               onPressed: () {
-                // TODO: Update user's selected tab
+                Provider.of<AppStateManager>(context, listen: false)
+                    .gotoRecipes();
               },
             ),
           ],
