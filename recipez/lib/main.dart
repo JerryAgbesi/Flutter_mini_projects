@@ -59,8 +59,10 @@ class _FoodiezState extends State<Foodiez> {
             debugShowCheckedModeBanner: false,
             theme: theme,
             title: 'Foodiez',
-            
-            home:Router(routerDelegate: _appRouter,),
+            home: Router(
+              backButtonDispatcher: RootBackButtonDispatcher(),
+              routerDelegate: _appRouter,
+            ),
           );
         },
       ),

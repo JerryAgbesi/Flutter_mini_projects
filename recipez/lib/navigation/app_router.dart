@@ -55,8 +55,25 @@ class AppRouter extends RouterDelegate
           LoginScreen.page(),
         if (appStateManager.isloggedIn && !appStateManager.isonBoardingComplete)
           OnboardingScreen.page(),
-          if(appStateManager.isonBoardingComplete)
-          Home.page(appStateManager.getSelectedTab)
+        if (appStateManager.isonBoardingComplete)
+          Home.page(appStateManager.getSelectedTab),
+        if (groceryManager.isCreatingNewItem)
+          GroceryItemScreen.page(
+              onCreate: (item) {
+                groceryManager.addItem(item);
+              },
+              onUpdate: (item, index) {}),
+        if (groceryManager.selectedIndex != -1)
+          GroceryItemScreen.page(
+              item: groceryManager.selectedGroceryItem,
+              index: groceryManager.selectedIndex,
+              onCreate: (_) {},
+              onUpdate: (item, index) {
+                groceryManager.updateItem(item, index);
+              }),
+        if (profileManager.didSelectUser)
+          ProfileScreen.page(profileManager.getUser),
+        if (profileManager.didTapOnRaywenderlich) WebViewScreen.page(),
       ],
     );
   }
@@ -67,6 +84,12 @@ class AppRouter extends RouterDelegate
     }
     if (route.settings.name == FoodiezPages.onboardingPath) {
       appStateManager.logout();
+    }
+    if (route.settings.name == FoodiezPages.groceryItemDetails) {
+      groceryManager.groceryItemTapped(-1);
+    }
+    if (route.settings.name == FoodiezPages.raywenderlich) {
+      profileManager.tapOnRaywenderlich(false);
     }
 
     return true;

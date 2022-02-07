@@ -35,11 +35,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Wrap Consumer for AppStateManager
     return Consumer<AppStateManager>(
         builder: (context, appStateManager, child) {
-      child:
-      Scaffold(
+      return Scaffold(
         appBar: AppBar(
           title: Text(
             'Fooderlich',
@@ -57,16 +55,16 @@ class _HomeState extends State<Home> {
           onTap: (index) {
             Provider.of<AppStateManager>(context, listen: false).gotoTab(index);
           },
-          items: <BottomNavigationBarItem>[
-            const BottomNavigationBarItem(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
               icon: Icon(Icons.explore),
               label: 'Explore',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.book),
               label: 'Recipes',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.list),
               label: 'To Buy',
             ),
@@ -74,7 +72,6 @@ class _HomeState extends State<Home> {
         ),
       );
     });
-    // TODO: Add closing },);
   }
 
   Widget profileButton() {
@@ -88,7 +85,8 @@ class _HomeState extends State<Home> {
           ),
         ),
         onTap: () {
-          // TODO: home -> profile
+          Provider.of<ProfileManager>(context, listen: false)
+              .tapOnProfile(true);
         },
       ),
     );
