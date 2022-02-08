@@ -51,11 +51,11 @@ class AppRouter extends RouterDelegate
       pages: [
         // SplashScreen.page(),
         if (!appStateManager.isInitialized) SplashScreen.page(),
-        if (appStateManager.isInitialized && !appStateManager.isloggedIn)
+        if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
           LoginScreen.page(),
-        if (appStateManager.isloggedIn && !appStateManager.isonBoardingComplete)
+        if (appStateManager.isLoggedIn && !appStateManager.isOnboardingComplete)
           OnboardingScreen.page(),
-        if (appStateManager.isonBoardingComplete)
+        if (appStateManager.isOnboardingComplete)
           Home.page(appStateManager.getSelectedTab),
         if (groceryManager.isCreatingNewItem)
           GroceryItemScreen.page(

@@ -59,7 +59,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: const Text('Skip'),
           onPressed: () {
             Provider.of<AppStateManager>(context, listen: false)
-                .completeOnBoarding();
+                .completeOnboarding();
           },
         ),
       ],

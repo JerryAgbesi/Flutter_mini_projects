@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
               Theme.of(context).textSelectionTheme.selectionColor,
           currentIndex: widget.currentTab,
           onTap: (index) {
-            Provider.of<AppStateManager>(context, listen: false).gotoTab(index);
+            Provider.of<AppStateManager>(context, listen: false).goToTab(index);
           },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
