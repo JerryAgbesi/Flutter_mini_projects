@@ -37,7 +37,7 @@ class _MyRecipesListState extends State<MyRecipesList> {
           return SizedBox(
             height: 100,
             child: Slidable(
-              actionPane: const SlidableDrawerActionPane(),
+              actionPane: SlidableDrawerActionPane(),
               actionExtentRatio: 0.25,
               child: Card(
                 elevation: 1.0,
