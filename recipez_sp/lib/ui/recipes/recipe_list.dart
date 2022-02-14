@@ -115,36 +115,52 @@ class _RecipeListState extends State<RecipeList> {
             const SizedBox(
               width: 6.0,
             ),
-            // *** Start Replace
             Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Search'),
-                      autofocus: false,
-                      controller: searchTextController,
-                      onChanged: (query) => {
-                        if (query.length >= 3)
-                          {
-                            // Rebuild list
-                            setState(
-                              () {
-                                currentSearchList.clear();
-                                currentCount = 0;
-                                currentEndPosition = pageCount;
-                                currentStartPosition = 0;
-                              },
-                            )
-                          }
-                      },
+                child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Search',
                     ),
+                    autofocus: false,
+                    textInputAction: TextInputAction.done,
+                    onSubmitted: (value) {
+                      if (!previousSearches.contains(value)) {
+                        previousSearches.add(value);
+                        savePreviousSearches();
+                      }
+                    },
+                    controller: searchTextController,
                   ),
-                ],
-              ),
-            ),
-            // *** End Replace
+                ),
+                PopupMenuButton<String>(
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: lightGrey,
+                    ),
+                    onSelected: (String value) {
+                      searchTextController.text = value;
+                      startSearch(searchTextController.text);
+                    },
+                    itemBuilder: (BuildContext context) {
+                      return previousSearches
+                          .map<CustomDropdownMenuItem<String>>((String value) {
+                        return CustomDropdownMenuItem<String>(
+                          value: value,
+                          text: value,
+                          callback: () {
+                            setState(() {
+                              previousSearches.remove(value);
+                              Navigator.pop(context);
+                            });
+                          },
+                        );
+                      },).toList();
+                    })
+              ],
+            ))
           ],
         ),
       ),
