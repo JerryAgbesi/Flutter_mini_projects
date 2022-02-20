@@ -34,6 +34,7 @@ class _RecipeListState extends State<RecipeList> {
   @override
   void initState() {
     super.initState();
+    loadRecipes();
     getPreviousSearches();
     searchTextController = TextEditingController(text: '');
     _scrollController
@@ -199,11 +200,11 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget _buildRecipeLoader(BuildContext context) {
-    if (_currentRecipe1 == 1 || _currentRecipe1?.hits ==null ) {
+    if (_currentRecipe1 == 1 || _currentRecipe1?.hits == null) {
       return Container();
     }
     // Show a loading indicator while waiting for the movies
-    return  Center(
+    return Center(
       child: _buildRecipeCard(context, _currentRecipe1!.hits, 0),
     );
   }
@@ -219,6 +220,5 @@ class _RecipeListState extends State<RecipeList> {
       },
       child: recipeStringCard(recipe.image, recipe.label),
     );
-    
   }
 }
