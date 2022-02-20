@@ -123,7 +123,7 @@ class _RecipeListState extends State<RecipeList> {
                   currentFocus.unfocus();
                 }
               },
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
             const SizedBox(
               width: 6.0,
