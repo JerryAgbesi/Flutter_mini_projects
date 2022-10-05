@@ -1,3 +1,2 @@
 # Flutter_mini_projects
-A collection of projects I created while reading Flutter apprentice by the Raywenderlich
-tutorial team. 
+A collection of apps created using flutter , inspired by dribbble or youtube UI projects 
