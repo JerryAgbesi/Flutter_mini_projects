@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Crypto man',
+      title: 'Crypto Man',
       home: SafeArea(
         child: Scaffold(
           body: Padding(
