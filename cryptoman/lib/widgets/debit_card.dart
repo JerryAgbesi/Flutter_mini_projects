@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class DebitCard extends StatelessWidget {
-  const DebitCard({super.key});
+  DebitCard({super.key, required this.title, required this.balance, required this.color});
+
+  late String title;
+  late String balance;
+  late Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +15,9 @@ class DebitCard extends StatelessWidget {
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: Color(0xFF187efe),
+        color: color,
       ),
-      height: 0.25 * size.height,
+      height: 0.1 * size.height,
       width: 0.85 * size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +26,7 @@ class DebitCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "My Wallet",
+                "$title",
                 style: debitCardText,
               ),
               Image.asset(
@@ -39,7 +43,7 @@ class DebitCard extends StatelessWidget {
             style: debitCardText,
           ),
           Text(
-            "\$2,946",
+            "\$$balance",
             style: debitCardText.copyWith(
                 fontWeight: FontWeight.bold, fontSize: 30.0),
           ),
@@ -100,3 +104,16 @@ class Option extends StatelessWidget {
     );
   }
 }
+
+List<DebitCard> cards = [
+  DebitCard(
+    title: "My Wallet",
+    balance: "2,946",
+    color: Color(0xFF187efe),
+  ),
+  DebitCard(
+    title: "Crypto wallet",
+    balance: "356",
+    color: Color(0xFFFD9638),
+  )
+];
