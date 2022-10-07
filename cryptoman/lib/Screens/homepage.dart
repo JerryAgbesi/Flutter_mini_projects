@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:cryptoman/widgets/debit_card.dart';
+import 'package:cryptoman/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key,});
+
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -79,10 +80,23 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 20,
             ),
-            
+            Container(
+              padding: EdgeInsets.fromLTRB(30, 0, 2, 0),
+              height: 130,
+              width: double.infinity,
+              child: ListView.separated(
+                  separatorBuilder: (context, index) => SizedBox(
+                        width: 15,
+                      ),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: ForYouCards.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ForYouCards[index];
+                  }),
+            ),
           ]),
         ),
       );
