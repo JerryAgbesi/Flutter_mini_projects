@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cryptoman/widgets/widgets.dart';
+import 'package:cryptoman/widgets/constants.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key,});
-
+  HomePage({
+    super.key,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -71,13 +73,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(horizontal: 25.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  "For You",
-                  style: TextStyle(
-                      color: Color(0xFF353536),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                ),
+                child: Text("For You", style: labelText),
               ),
             ),
             SizedBox(
@@ -97,6 +93,43 @@ class _HomePageState extends State<HomePage> {
                     return ForYouCards[index];
                   }),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "My Portfolio",
+                    style: labelText,
+                  ),
+                  Text(
+                    "See All",
+                    style: labelText.copyWith(
+                        color: Color(0xFF187efe), fontSize: 18),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(30, 0, 2, 0),
+              height: 40,
+              width: double.infinity,
+              child: ListView.separated(
+                  separatorBuilder: (context, index) => SizedBox(
+                        width: 15,
+                      ),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: pCards.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return pCards[index];
+                  }),
+            )
           ]),
         ),
       );
